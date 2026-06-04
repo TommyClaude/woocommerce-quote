@@ -58,7 +58,13 @@ final class WCQ_Plugin {
 	 * @return void
 	 */
 	private function includes() {
+		require_once WCQ_PLUGIN_DIR . 'includes/wcq-core-functions.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-settings.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-cpt.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-session.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-ajax.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-frontend.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-request.php';
 	}
 
 	/**
@@ -92,7 +98,11 @@ final class WCQ_Plugin {
 	 * @return void
 	 */
 	public function init_components() {
-		$this->components['cpt'] = new WCQ_CPT();
+		$this->components['cpt']      = new WCQ_CPT();
+		$this->components['session']  = new WCQ_Session();
+		$this->components['ajax']     = new WCQ_Ajax();
+		$this->components['frontend'] = new WCQ_Frontend();
+		$this->components['request']  = new WCQ_Request();
 
 		/**
 		 * Fires once every component has been instantiated.

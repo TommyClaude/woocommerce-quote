@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,17 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.2.0 =
+* Quote list stored in the WooCommerce session (guests supported).
+* AJAX add / update / remove with nonce + access checks.
+* Add-to-Quote button on the shop loop and single product pages, honouring the
+  button-mode and RFQ-scope settings.
+* `[woocommerce_quote]` shortcode: quote list, request form (honeypot + nonce),
+  validation, and a thank-you view.
+* Submission handler creates a `wcq_quote` record, snapshots line items/totals,
+  clears the list and fires `wcq_quote_created`.
+* Settings storage/defaults/sanitization (`WCQ_Settings`).
 
 = 0.1.0 =
 * Initial scaffold: plugin bootstrap, WooCommerce-active guard, HPOS compatibility

@@ -1,0 +1,109 @@
+/* Request a Quote for WooCommerce — front-end styles. */
+
+/* Hide the honeypot field from humans (kept reachable for bots). */
+.wcq-form .wcq-hp {
+	position: absolute !important;
+	left: -9999px !important;
+	top: -9999px !important;
+	height: 0;
+	overflow: hidden;
+}
+
+.wcq-add-to-quote {
+	margin-top: .35em;
+}
+
+.wcq-button-loop {
+	display: inline-block;
+}
+
+/* Quote list table. */
+.wcq-items {
+	width: 100%;
+	margin-bottom: 1.5em;
+}
+
+.wcq-items .wcq-col-image img {
+	max-width: 64px;
+	height: auto;
+}
+
+.wcq-items .wcq-sku {
+	display: block;
+	font-size: .85em;
+	opacity: .7;
+}
+
+.wcq-items .wcq-qty {
+	width: 5em;
+	max-width: 100%;
+}
+
+.wcq-items .wcq-remove {
+	display: inline-block;
+	width: 1.6em;
+	height: 1.6em;
+	line-height: 1.5em;
+	text-align: center;
+	border-radius: 50%;
+	text-decoration: none;
+	font-weight: 700;
+	border: 1px solid currentColor;
+	opacity: .6;
+}
+
+.wcq-items .wcq-remove:hover {
+	opacity: 1;
+}
+
+.wcq-subtotal {
+	font-size: 1.1em;
+	margin-bottom: 1.5em;
+}
+
+/* Request form. */
+.wcq-form {
+	max-width: 540px;
+}
+
+.wcq-form .wcq-field {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1em;
+}
+
+.wcq-form .wcq-field label {
+	margin-bottom: .25em;
+	font-weight: 600;
+}
+
+.wcq-form .wcq-field input,
+.wcq-form .wcq-field textarea {
+	width: 100%;
+}
+
+.wcq-form .required {
+	color: #b00;
+}
+
+/* Thank-you view. */
+.wcq-thankyou {
+	padding: 1.5em;
+	border: 1px solid #46b450;
+	border-left-width: 4px;
+	border-radius: 3px;
+	background: #f7fcf7;
+}
+
+/* Counter badge. */
+.wcq-count {
+	display: inline-block;
+	min-width: 1.4em;
+	text-align: center;
+}
+
+/* Button busy state. */
+.wcq-add-to-quote.loading {
+	opacity: .7;
+	cursor: progress;
+}
