@@ -15,7 +15,12 @@ Requires WordPress + **WooCommerce active**.
 Brand new — only README so far. Build per `PLAN.md`, **Phase 1 (MVP) first**.
 
 ## Tech & conventions
-- Standard WordPress/WooCommerce **PHP plugin** (no bundler/build step for PHP).
+- Standard WordPress/WooCommerce **PHP plugin**. The PHP/front-end side needs no build
+  step, BUT the **admin UI is a React app** built with **@wordpress/components +
+  @wordpress/element** via **@wordpress/scripts (`wp-scripts`)** — see PLAN.md
+  "Admin UI shell". **Prefer a WP component for every control**; custom CSS/SVG only where
+  none exists (charts, brand logo). Header has the plugin logo + a Support button; tabs are
+  Dashboard (stats) / Settings / About us.
 - Prefix everything: functions `wcq_`, classes `WCQ_`, options/meta `_wcq_` / `wcq_`,
   hooks `wcq_`, text domain `woocommerce-quote`.
 - Security: **nonce** on every form/AJAX, `sanitize_*` on all input, `esc_*` on all
@@ -33,6 +38,9 @@ Brand new — only README so far. Build per `PLAN.md`, **Phase 1 (MVP) first**.
   constant) so the user can track it. Start at `0.1.0`.
 
 ## Build / test
+- Build the admin app first: `npm install` then `npm run build` (wp-scripts → outputs
+  `build/index.js` + `build/index.asset.php`). Enqueue using that asset file's dependency
+  array + version so WP loads `wp-components`, `wp-element`, etc.
 - Package the plugin: `zip -qr woocommerce-quote.zip woocommerce-quote/` (zip the plugin
   folder — the actual plugin lives in a subfolder; keep repo meta out of the zip).
 - **Test in WordPress Playground** with WooCommerce: add a `blueprint.json` that installs
