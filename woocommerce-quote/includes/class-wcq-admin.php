@@ -639,6 +639,13 @@ class WCQ_Admin {
 		echo '<p><label for="wcq_quote_note"><strong>' . esc_html__( 'Note to customer', 'woocommerce-quote' ) . '</strong></label>';
 		echo '<textarea id="wcq_quote_note" name="wcq_quote_note" rows="3" class="widefat">' . esc_textarea( $note ) . '</textarea></p>';
 
+		$accept_url = wcq_get_accept_url( $post->ID );
+		if ( $accept_url && ! $order_id ) {
+			echo '<p><label><strong>' . esc_html__( 'Customer accept link', 'woocommerce-quote' ) . '</strong></label>';
+			echo '<input type="text" readonly class="widefat" onclick="this.select()" value="' . esc_attr( $accept_url ) . '" />';
+			echo '<span class="description">' . esc_html__( 'This link is included in the quote email. Open it to simulate the customer accepting (creates the order).', 'woocommerce-quote' ) . '</span></p>';
+		}
+
 		echo '<p><label><input type="checkbox" name="wcq_send_quote" value="1" /> ';
 		echo esc_html__( 'Email this quote to the customer on Update (sets status to Quoted).', 'woocommerce-quote' );
 		echo '</label></p>';
