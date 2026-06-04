@@ -142,3 +142,61 @@ function wcq_get_button_label() {
 	$label = (string) WCQ_Settings::get( 'button_label' );
 	return '' !== $label ? $label : __( 'Add to Quote', 'woocommerce-quote' );
 }
+
+/**
+ * Whether the price + Add-to-Cart should be hidden for a product (Phase 2).
+ *
+ * Driven by the "hide price" setting, scoped to the same products that are
+ * eligible for quotes.
+ *
+ * @param WC_Product|int $product Product object or ID.
+ * @return bool
+ */
+function wcq_is_price_hidden( $product ) {
+	if ( ! WCQ_Settings::get( 'hide_price' ) ) {
+		return false;
+	}
+
+	$hidden = wcq_is_product_quotable( $product );
+
+	/**
+	 * Filter whether a product's price is hidden.
+	 *
+	 * @param bool       $hidden  Whether the price is hidden.
+	 * @param WC_Product $product The product.
+	 */
+	return (bool) apply_filters( 'wcq_is_price_hidden', $hidden, $product );
+}
+
+/**
+ * Label shown in place of a hidden price (translated default when unset).
+ *
+ * @return string
+ */
+function wcq_get_hidden_price_label() {
+	$label = (string) WCQ_Settings::get( 'hidden_price_label' );
+	return '' !== $label ? $label : __( 'Price on request', 'woocommerce-quote' );
+}
+
+/**
+ * The tokenized URL a customer uses to accept a quote (Phase 2).
+ *
+ * @param int $quote_id Quote post ID.
+ * @return string Empty string if no accept token has been issued yet.
+ */
+function wcq_get_accept_url( $quote_id ) {
+	$token = get_post_meta( $quote_id, '_wcq_accept_token', true );
+	if ( ! $token ) {
+		return '';
+	}
+	$base = wcq_get_quote_page_url();
+	$base = $base ? $base : home_url( '/' );
+
+	return add_query_arg(
+		array(
+			'wcq_accept' => (int) $quote_id,
+			'wcq_token'  => rawurlencode( $token ),
+		),
+		$base
+	);
+}

@@ -33,9 +33,11 @@ class WCQ_Emails {
 	public function register_emails( $emails ) {
 		require_once WCQ_PLUGIN_DIR . 'includes/emails/class-wcq-email-admin-new-quote.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/emails/class-wcq-email-customer-quote-received.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/emails/class-wcq-email-customer-quote.php';
 
-		$emails['WCQ_Email_Admin_New_Quote']          = new WCQ_Email_Admin_New_Quote();
-		$emails['WCQ_Email_Customer_Quote_Received']  = new WCQ_Email_Customer_Quote_Received();
+		$emails['WCQ_Email_Admin_New_Quote']         = new WCQ_Email_Admin_New_Quote();
+		$emails['WCQ_Email_Customer_Quote_Received'] = new WCQ_Email_Customer_Quote_Received();
+		$emails['WCQ_Email_Customer_Quote']         = new WCQ_Email_Customer_Quote();
 
 		return $emails;
 	}

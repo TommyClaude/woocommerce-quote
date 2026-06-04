@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Request a Quote for WooCommerce\n"
 "Report-Msgid-Bugs-To: https://github.com/TommyClaude/woocommerce-quote\n"
-"POT-Creation-Date: 2026-06-04 20:17+0000\n"
+"POT-Creation-Date: 2026-06-04 21:58+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +14,7 @@ msgstr ""
 msgid "%1$s: %2$d requests"
 msgstr ""
 
-#: includes/class-wcq-admin.php:332
+#: includes/class-wcq-admin.php:333
 msgid "%d product"
 msgid_plural "%d products"
 msgstr[0] ""
@@ -36,15 +36,27 @@ msgstr ""
 msgid "About us"
 msgstr ""
 
+#: templates/emails/customer-quote.php:73
+msgid "Accept quote &amp; checkout"
+msgstr ""
+
+#: templates/emails/plain/customer-quote.php:41
+msgid "Accept your quote and check out:"
+msgstr ""
+
 #: src/tabs/dashboard.js:58
 msgid "Accepted"
+msgstr ""
+
+#: templates/emails/customer-quote.php:77
+msgid "Accepting creates an order you can pay for at the standard checkout."
 msgstr ""
 
 #: src/tabs/settings.js:182
 msgid "Access"
 msgstr ""
 
-#: includes/wcq-core-functions.php:143 src/tabs/settings.js:198
+#: includes/wcq-core-functions.php:143 src/tabs/settings.js:214
 msgid "Add to Quote"
 msgstr ""
 
@@ -52,11 +64,11 @@ msgstr ""
 msgid "Added to your quote list."
 msgstr ""
 
-#: includes/class-wcq-frontend.php:69
+#: includes/class-wcq-frontend.php:73
 msgid "Added ✓"
 msgstr ""
 
-#: includes/class-wcq-frontend.php:68
+#: includes/class-wcq-frontend.php:72
 msgid "Adding…"
 msgstr ""
 
@@ -72,7 +84,7 @@ msgstr ""
 msgid "Browse products"
 msgstr ""
 
-#: src/tabs/settings.js:196
+#: src/tabs/settings.js:212
 msgid "Button label"
 msgstr ""
 
@@ -84,11 +96,11 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: src/tabs/settings.js:204
+#: src/tabs/settings.js:220
 msgid "Comma-separated. New requests are emailed here."
 msgstr ""
 
-#: includes/class-wcq-admin.php:411 templates/emails/admin-new-quote.php:37 templates/emails/plain/admin-new-quote.php:30 templates/quote-form.php:52
+#: includes/class-wcq-admin.php:421 templates/emails/admin-new-quote.php:37 templates/emails/plain/admin-new-quote.php:30 templates/quote-form.php:52
 msgid "Company"
 msgstr ""
 
@@ -116,27 +128,35 @@ msgstr ""
 msgid "Could not save settings."
 msgstr ""
 
-#: includes/class-wcq-admin.php:287 templates/emails/admin-new-quote.php:29 templates/emails/plain/admin-new-quote.php:23 src/tabs/dashboard.js:88
+#: includes/class-wcq-accept.php:152
+msgid "Created from accepted quote #%d."
+msgstr ""
+
+#: includes/class-wcq-admin.php:288 templates/emails/admin-new-quote.php:29 templates/emails/plain/admin-new-quote.php:23 src/tabs/dashboard.js:88
 msgid "Customer"
 msgstr ""
 
-#: includes/class-wcq-admin.php:70 includes/class-wcq-admin.php:71 src/app.js:13
+#: includes/class-wcq-admin.php:71 includes/class-wcq-admin.php:72 src/app.js:13
 msgid "Dashboard"
 msgstr ""
 
-#: includes/class-wcq-admin.php:291 src/tabs/dashboard.js:90
+#: includes/class-wcq-admin.php:292 src/tabs/dashboard.js:90
 msgid "Date"
 msgstr ""
 
-#: src/tabs/settings.js:218
+#: src/tabs/settings.js:234
 msgid "Delete all plugin data when uninstalling"
 msgstr ""
 
-#: includes/class-wcq-admin.php:409 includes/class-wcq-admin.php:418 templates/emails/admin-new-quote.php:32 templates/emails/plain/admin-new-quote.php:25 templates/quote-form.php:42
+#: includes/class-wcq-admin.php:419 includes/class-wcq-admin.php:428 templates/emails/admin-new-quote.php:32 templates/emails/plain/admin-new-quote.php:25 templates/quote-form.php:42
 msgid "Email"
 msgstr ""
 
-#: includes/class-wcq-admin.php:474 templates/emails/parts/items-table.php:38 templates/emails/plain/admin-new-quote.php:44
+#: includes/class-wcq-admin.php:643
+msgid "Email this quote to the customer on Update (sets status to Quoted)."
+msgstr ""
+
+#: includes/class-wcq-admin.php:484 templates/emails/parts/items-table.php:38 templates/emails/plain/admin-new-quote.php:44
 msgid "Estimated subtotal"
 msgstr ""
 
@@ -148,12 +168,20 @@ msgstr ""
 msgid "Get support"
 msgstr ""
 
-#: templates/emails/customer-quote-received.php:23 templates/emails/plain/customer-quote-received.php:19
+#: templates/emails/customer-quote-received.php:23 templates/emails/customer-quote.php:28 templates/emails/plain/customer-quote-received.php:19 templates/emails/plain/customer-quote.php:24
 msgid "Hi %s,"
+msgstr ""
+
+#: src/tabs/settings.js:200
+msgid "Hidden price label"
 msgstr ""
 
 #: src/tabs/settings.js:141
 msgid "Hidden-price products only"
+msgstr ""
+
+#: src/tabs/settings.js:192
+msgid "Hide price & Add to Cart for quotable products"
 msgstr ""
 
 #: src/tabs/about.js:12
@@ -168,7 +196,7 @@ msgstr ""
 msgid "Item removed."
 msgstr ""
 
-#: includes/class-wcq-admin.php:288
+#: includes/class-wcq-admin.php:289
 msgid "Items"
 msgstr ""
 
@@ -180,11 +208,11 @@ msgstr ""
 msgid "Leave this field empty"
 msgstr ""
 
-#: includes/class-wcq-admin.php:439
+#: includes/class-wcq-admin.php:449 templates/emails/customer-quote.php:40
 msgid "Line total"
 msgstr ""
 
-#: includes/class-wcq-admin.php:428 templates/emails/admin-new-quote.php:42 templates/emails/plain/admin-new-quote.php:33 templates/quote-form.php:57
+#: includes/class-wcq-admin.php:438 templates/emails/admin-new-quote.php:42 templates/emails/plain/admin-new-quote.php:33 templates/quote-form.php:57
 msgid "Message"
 msgstr ""
 
@@ -192,7 +220,7 @@ msgstr ""
 msgid "More from us"
 msgstr ""
 
-#: includes/class-wcq-admin.php:408 templates/emails/admin-new-quote.php:31 templates/emails/plain/admin-new-quote.php:24 templates/quote-form.php:37
+#: includes/class-wcq-admin.php:418 templates/emails/admin-new-quote.php:31 templates/emails/plain/admin-new-quote.php:24 templates/quote-form.php:37
 msgid "Name"
 msgstr ""
 
@@ -200,8 +228,12 @@ msgstr ""
 msgid "New quote request"
 msgstr ""
 
-#: includes/class-wcq-admin.php:443
+#: includes/class-wcq-admin.php:453
 msgid "No products recorded."
+msgstr ""
+
+#: includes/class-wcq-admin.php:614
+msgid "No products to quote."
 msgstr ""
 
 #: includes/class-wcq-cpt.php:71
@@ -216,6 +248,14 @@ msgstr ""
 msgid "No quote requests yet."
 msgstr ""
 
+#: templates/emails/customer-quote.php:66 templates/emails/plain/customer-quote.php:37
+msgid "Note"
+msgstr ""
+
+#: includes/class-wcq-admin.php:639
+msgid "Note to customer"
+msgstr ""
+
 #: src/tabs/dashboard.js:112
 msgid "Open"
 msgstr ""
@@ -228,7 +268,7 @@ msgstr ""
 msgid "Pending (New)"
 msgstr ""
 
-#: includes/class-wcq-admin.php:410 templates/emails/admin-new-quote.php:34 templates/emails/plain/admin-new-quote.php:27 templates/quote-form.php:47
+#: includes/class-wcq-admin.php:420 templates/emails/admin-new-quote.php:34 templates/emails/plain/admin-new-quote.php:27 templates/quote-form.php:47
 msgid "Phone"
 msgstr ""
 
@@ -248,11 +288,15 @@ msgstr ""
 msgid "Please log in to submit a quote request."
 msgstr ""
 
-#: includes/class-wcq-admin.php:438 templates/emails/parts/items-table.php:19 templates/quote-list.php:60
+#: includes/class-wcq-admin.php:448 templates/emails/parts/items-table.php:19 templates/quote-list.php:60
 msgid "Price"
 msgstr ""
 
-#: includes/class-wcq-admin.php:435 templates/emails/parts/items-table.php:16 templates/quote-list.php:59
+#: includes/wcq-core-functions.php:178 src/tabs/settings.js:202
+msgid "Price on request"
+msgstr ""
+
+#: includes/class-wcq-admin.php:445 includes/class-wcq-admin.php:619 templates/emails/customer-quote.php:37 templates/emails/parts/items-table.php:16 templates/quote-list.php:59
 msgid "Product"
 msgstr ""
 
@@ -260,7 +304,7 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
-#: includes/class-wcq-admin.php:437 templates/emails/parts/items-table.php:18
+#: includes/class-wcq-admin.php:447 includes/class-wcq-admin.php:620 templates/emails/customer-quote.php:38 templates/emails/parts/items-table.php:18
 msgid "Qty"
 msgstr ""
 
@@ -268,7 +312,7 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: includes/class-wcq-admin.php:286
+#: includes/class-wcq-admin.php:287
 msgid "Quote"
 msgstr ""
 
@@ -280,20 +324,24 @@ msgstr ""
 msgid "Quote Request"
 msgstr ""
 
-#: includes/class-wcq-admin.php:80 includes/class-wcq-admin.php:81 includes/class-wcq-cpt.php:66
+#: includes/class-wcq-admin.php:81 includes/class-wcq-admin.php:82 includes/class-wcq-cpt.php:66
 msgid "Quote Requests"
 msgstr ""
 
-#: includes/class-wcq-admin.php:376
+#: includes/class-wcq-admin.php:377
 msgid "Quote details"
 msgstr ""
 
-#: src/tabs/settings.js:210
+#: src/tabs/settings.js:226
 msgid "Quote list page"
 msgstr ""
 
 #: includes/class-wcq-ajax.php:110
 msgid "Quote list updated."
+msgstr ""
+
+#: includes/class-wcq-admin.php:386
+msgid "Quote pricing"
 msgstr ""
 
 #: includes/emails/class-wcq-email-customer-quote-received.php:25
@@ -308,7 +356,7 @@ msgstr ""
 msgid "Quote requests over the last 30 days"
 msgstr ""
 
-#: includes/class-wcq-admin.php:495
+#: includes/class-wcq-admin.php:505
 msgid "Quote status"
 msgstr ""
 
@@ -320,6 +368,10 @@ msgstr ""
 msgid "Quoted"
 msgstr ""
 
+#: includes/class-wcq-admin.php:622
+msgid "Quoted unit price"
+msgstr ""
+
 #: src/tabs/settings.js:134
 msgid "RFQ scope"
 msgstr ""
@@ -328,7 +380,7 @@ msgstr ""
 msgid "Recent requests"
 msgstr ""
 
-#: src/tabs/settings.js:203
+#: src/tabs/settings.js:219
 msgid "Recipient email(s)"
 msgstr ""
 
@@ -344,7 +396,7 @@ msgstr ""
 msgid "Replace Add to Cart"
 msgstr ""
 
-#: includes/class-wcq-plugin.php:156 src/components/header.js:19
+#: includes/class-wcq-plugin.php:158 src/components/header.js:19
 msgid "Request a Quote for WooCommerce"
 msgstr ""
 
@@ -360,7 +412,11 @@ msgstr ""
 msgid "Request received"
 msgstr ""
 
-#: includes/class-wcq-admin.php:432 templates/emails/admin-new-quote.php:46 templates/emails/plain/admin-new-quote.php:36
+#: includes/class-wcq-admin.php:621
+msgid "Requested price"
+msgstr ""
+
+#: includes/class-wcq-admin.php:442 templates/emails/admin-new-quote.php:46 templates/emails/plain/admin-new-quote.php:36
 msgid "Requested products"
 msgstr ""
 
@@ -372,15 +428,15 @@ msgstr ""
 msgid "Require login"
 msgstr ""
 
-#: includes/class-wcq-admin.php:436 templates/emails/parts/items-table.php:17
+#: includes/class-wcq-admin.php:446 templates/emails/parts/items-table.php:17
 msgid "SKU"
 msgstr ""
 
-#: src/tabs/settings.js:227
+#: src/tabs/settings.js:243
 msgid "Save settings"
 msgstr ""
 
-#: src/tabs/settings.js:227
+#: src/tabs/settings.js:243
 msgid "Saving…"
 msgstr ""
 
@@ -408,6 +464,10 @@ msgstr ""
 msgid "Selected user roles"
 msgstr ""
 
+#: includes/emails/class-wcq-email-customer-quote.php:26
+msgid "Sent to the customer with the quoted prices and a link to accept."
+msgstr ""
+
 #: includes/emails/class-wcq-email-admin-new-quote.php:26
 msgid "Sent to the store when a customer submits a quote request."
 msgstr ""
@@ -420,6 +480,10 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
+#: src/tabs/settings.js:193
+msgid "Show a \"Price on request\" label and only the quote button for products in the RFQ scope."
+msgstr ""
+
 #: src/tabs/settings.js:123
 msgid "Show both buttons"
 msgstr ""
@@ -428,7 +492,7 @@ msgstr ""
 msgid "Show the Add to Quote button alongside Add to Cart, or replace it."
 msgstr ""
 
-#: includes/class-wcq-frontend.php:70
+#: includes/class-wcq-frontend.php:74
 msgid "Something went wrong. Please try again."
 msgstr ""
 
@@ -436,11 +500,15 @@ msgstr ""
 msgid "Sorry, that product could not be found."
 msgstr ""
 
+#: includes/class-wcq-accept.php:72
+msgid "Sorry, we could not create your order. Please contact us."
+msgstr ""
+
 #: includes/class-wcq-request.php:109
 msgid "Sorry, we could not save your request. Please try again."
 msgstr ""
 
-#: includes/class-wcq-admin.php:290 includes/class-wcq-admin.php:385 src/tabs/dashboard.js:89
+#: includes/class-wcq-admin.php:291 includes/class-wcq-admin.php:395 src/tabs/dashboard.js:89
 msgid "Status"
 msgstr ""
 
@@ -450,6 +518,10 @@ msgstr ""
 
 #: src/components/header.js:31
 msgid "Support"
+msgstr ""
+
+#: templates/emails/customer-quote.php:32 templates/emails/plain/customer-quote.php:25
+msgid "Thank you for your interest. Here is your quote:"
 msgstr ""
 
 #: templates/emails/customer-quote-received.php:27 templates/emails/plain/customer-quote-received.php:21
@@ -472,7 +544,7 @@ msgstr ""
 msgid "That item is no longer in your quote list."
 msgstr ""
 
-#: src/tabs/settings.js:211
+#: src/tabs/settings.js:227
 msgid "The page that contains the [woocommerce_quote] shortcode."
 msgstr ""
 
@@ -480,7 +552,19 @@ msgstr ""
 msgid "This product is not available for quote requests."
 msgstr ""
 
-#: includes/class-wcq-admin.php:289
+#: includes/class-wcq-accept.php:66
+msgid "This quote can no longer be accepted."
+msgstr ""
+
+#: includes/class-wcq-accept.php:51
+msgid "This quote link is invalid or has expired."
+msgstr ""
+
+#: includes/class-wcq-admin.php:605
+msgid "This quote was accepted &mdash; WooCommerce order <a href=\"%1$s\">#%2$d</a> was created."
+msgstr ""
+
+#: includes/class-wcq-admin.php:290 templates/emails/customer-quote.php:59 templates/emails/plain/customer-quote.php:34
 msgid "Total"
 msgstr ""
 
@@ -488,7 +572,11 @@ msgstr ""
 msgid "Total requests"
 msgstr ""
 
-#: includes/class-wcq-admin.php:506
+#: templates/emails/customer-quote.php:39
+msgid "Unit price"
+msgstr ""
+
+#: includes/class-wcq-admin.php:516
 msgid "Use the Update button to save the status."
 msgstr ""
 
@@ -516,16 +604,28 @@ msgstr ""
 msgid "Which products show the Add to Quote button."
 msgstr ""
 
-#: includes/class-wcq-admin.php:58 includes/class-wcq-admin.php:59 src/components/header.js:17
+#: includes/class-wcq-admin.php:59 includes/class-wcq-admin.php:60 src/components/header.js:17
 msgid "WooCommerce Quote"
 msgstr ""
 
-#: includes/class-wcq-admin.php:165
+#: includes/class-wcq-admin.php:166
 msgid "WooCommerce Quote: please run \"npm install && npm run build\" to compile the admin app."
 msgstr ""
 
-#: includes/class-wcq-plugin.php:158
+#: includes/class-wcq-plugin.php:160
 msgid "WooCommerce must be installed and active for this plugin to work."
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote.php:25
+msgid "Your quote"
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote.php:43
+msgid "Your quote #{quote_id}"
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote.php:52
+msgid "Your quote is ready"
 msgstr ""
 
 #: includes/class-wcq-request.php:70 templates/quote-list.php:47

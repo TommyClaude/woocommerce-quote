@@ -187,6 +187,22 @@ export default function Settings() {
 						] }
 						onChange={ ( value ) => update( 'access', value ) }
 					/>
+
+					<ToggleControl
+						label={ __( 'Hide price & Add to Cart for quotable products', 'woocommerce-quote' ) }
+						help={ __( 'Show a "Price on request" label and only the quote button for products in the RFQ scope.', 'woocommerce-quote' ) }
+						checked={ !! form.hide_price }
+						onChange={ ( value ) => update( 'hide_price', value ) }
+					/>
+
+					{ form.hide_price ? (
+						<TextControl
+							label={ __( 'Hidden price label', 'woocommerce-quote' ) }
+							value={ form.hidden_price_label }
+							placeholder={ __( 'Price on request', 'woocommerce-quote' ) }
+							onChange={ ( value ) => update( 'hidden_price_label', value ) }
+						/>
+					) : null }
 				</CardBody>
 			</Card>
 

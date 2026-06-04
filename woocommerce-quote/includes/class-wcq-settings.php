@@ -36,6 +36,8 @@ class WCQ_Settings {
 			'scope_products'           => array(),    // product IDs.
 			'scope_roles'              => array(),    // role slugs.
 			'access'                   => 'guests',   // guests | login.
+			'hide_price'               => false,      // hide price + Add to Cart for quotable products (Phase 2).
+			'hidden_price_label'       => '',         // empty = translated default "Price on request".
 			'button_label'             => '',         // empty = translated default "Add to Quote".
 			'recipient_emails'         => get_option( 'admin_email' ),
 			'quote_page_id'            => 0,
@@ -113,7 +115,9 @@ class WCQ_Settings {
 		$out['access'] = ( isset( $input['access'] ) && in_array( $input['access'], $access_modes, true ) )
 			? $input['access'] : $defaults['access'];
 
-		$out['button_label']  = isset( $input['button_label'] ) ? sanitize_text_field( $input['button_label'] ) : '';
+		$out['hide_price']         = ! empty( $input['hide_price'] );
+		$out['hidden_price_label'] = isset( $input['hidden_price_label'] ) ? sanitize_text_field( $input['hidden_price_label'] ) : '';
+		$out['button_label']       = isset( $input['button_label'] ) ? sanitize_text_field( $input['button_label'] ) : '';
 		$out['quote_page_id'] = isset( $input['quote_page_id'] ) ? absint( $input['quote_page_id'] ) : 0;
 
 		// Recipient emails: comma-separated list of valid addresses.

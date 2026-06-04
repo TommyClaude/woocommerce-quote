@@ -39,6 +39,7 @@ class WCQ_Admin {
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( "save_post_{$type}", array( $this, 'save_status' ), 10, 2 );
+		add_action( "save_post_{$type}", array( $this, 'save_quote_pricing' ), 20, 2 );
 
 		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 10, 2 );
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
@@ -381,6 +382,15 @@ class WCQ_Admin {
 		);
 
 		add_meta_box(
+			'wcq_pricing',
+			__( 'Quote pricing', 'woocommerce-quote' ),
+			array( $this, 'render_pricing_box' ),
+			WCQ_CPT::POST_TYPE,
+			'normal',
+			'default'
+		);
+
+		add_meta_box(
 			'wcq_status',
 			__( 'Status', 'woocommerce-quote' ),
 			array( $this, 'render_status_box' ),
@@ -551,5 +561,151 @@ class WCQ_Admin {
 		 * @param string $old     Previous status.
 		 */
 		do_action( 'wcq_quote_status_changed', $post_id, $new, $old );
+	}
+
+	/**
+	 * Force a quote status (bypassing the Publish box) and fire the change hook.
+	 *
+	 * @param int    $post_id Quote ID.
+	 * @param string $new     New status slug.
+	 * @return void
+	 */
+	protected function force_status( $post_id, $new ) {
+		$old = get_post_status( $post_id );
+		if ( $old === $new ) {
+			return;
+		}
+		global $wpdb;
+		$wpdb->update( $wpdb->posts, array( 'post_status' => $new ), array( 'ID' => $post_id ) );
+		clean_post_cache( $post_id );
+		do_action( 'wcq_quote_status_changed', $post_id, $new, $old );
+	}
+
+	/**
+	 * Render the quote-pricing meta box (Phase 2).
+	 *
+	 * @param WP_Post $post Post.
+	 * @return void
+	 */
+	public function render_pricing_box( $post ) {
+		$items    = (array) get_post_meta( $post->ID, '_wcq_items', true );
+		$quote    = (array) get_post_meta( $post->ID, '_wcq_quote', true );
+		$prices   = isset( $quote['prices'] ) && is_array( $quote['prices'] ) ? $quote['prices'] : array();
+		$note     = isset( $quote['note'] ) ? $quote['note'] : '';
+		$order_id = (int) get_post_meta( $post->ID, '_wcq_order_id', true );
+
+		wp_nonce_field( 'wcq_save_pricing', 'wcq_pricing_nonce' );
+
+		if ( $order_id ) {
+			printf(
+				'<p>%s</p>',
+				wp_kses_post(
+					sprintf(
+						/* translators: 1: order edit URL, 2: order ID. */
+						__( 'This quote was accepted &mdash; WooCommerce order <a href="%1$s">#%2$d</a> was created.', 'woocommerce-quote' ),
+						esc_url( (string) get_edit_post_link( $order_id ) ),
+						$order_id
+					)
+				)
+			);
+		}
+
+		if ( empty( $items ) ) {
+			echo '<p>' . esc_html__( 'No products to quote.', 'woocommerce-quote' ) . '</p>';
+			return;
+		}
+
+		echo '<table class="wcq-detail-table widefat striped"><thead><tr>';
+		echo '<th>' . esc_html__( 'Product', 'woocommerce-quote' ) . '</th>';
+		echo '<th>' . esc_html__( 'Qty', 'woocommerce-quote' ) . '</th>';
+		echo '<th>' . esc_html__( 'Requested price', 'woocommerce-quote' ) . '</th>';
+		echo '<th>' . esc_html__( 'Quoted unit price', 'woocommerce-quote' ) . '</th>';
+		echo '</tr></thead><tbody>';
+
+		foreach ( $items as $i => $item ) {
+			$qty  = isset( $item['quantity'] ) ? (int) $item['quantity'] : 0;
+			$orig = isset( $item['price'] ) ? $item['price'] : '';
+			$val  = isset( $prices[ $i ] ) ? $prices[ $i ] : '';
+
+			echo '<tr>';
+			echo '<td>' . esc_html( isset( $item['name'] ) ? $item['name'] : '' ) . '</td>';
+			echo '<td>' . esc_html( $qty ) . '</td>';
+			echo '<td>' . ( ( '' === $orig || null === $orig ) ? '&mdash;' : wp_kses_post( wc_price( $orig ) ) ) . '</td>';
+			echo '<td><input type="number" step="0.01" min="0" name="wcq_quote_price[' . esc_attr( $i ) . ']" value="' . esc_attr( $val ) . '" /></td>';
+			echo '</tr>';
+		}
+		echo '</tbody></table>';
+
+		echo '<p><label for="wcq_quote_note"><strong>' . esc_html__( 'Note to customer', 'woocommerce-quote' ) . '</strong></label>';
+		echo '<textarea id="wcq_quote_note" name="wcq_quote_note" rows="3" class="widefat">' . esc_textarea( $note ) . '</textarea></p>';
+
+		echo '<p><label><input type="checkbox" name="wcq_send_quote" value="1" /> ';
+		echo esc_html__( 'Email this quote to the customer on Update (sets status to Quoted).', 'woocommerce-quote' );
+		echo '</label></p>';
+	}
+
+	/**
+	 * Save quoted prices + note, and optionally email the quote to the customer.
+	 *
+	 * @param int     $post_id Post ID.
+	 * @param WP_Post $post    Post.
+	 * @return void
+	 */
+	public function save_quote_pricing( $post_id, $post ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		if ( wp_is_post_revision( $post_id ) ) {
+			return;
+		}
+		if ( ! isset( $_POST['wcq_pricing_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wcq_pricing_nonce'] ) ), 'wcq_save_pricing' ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
+
+		$items  = (array) get_post_meta( $post_id, '_wcq_items', true );
+		$raw    = isset( $_POST['wcq_quote_price'] ) && is_array( $_POST['wcq_quote_price'] ) ? wp_unslash( $_POST['wcq_quote_price'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized per element below.
+		$prices = array();
+		$total  = 0.0;
+
+		foreach ( $items as $i => $item ) {
+			$qty = isset( $item['quantity'] ) ? (int) $item['quantity'] : 0;
+			if ( isset( $raw[ $i ] ) && '' !== $raw[ $i ] ) {
+				$unit         = (float) wc_format_decimal( sanitize_text_field( $raw[ $i ] ) );
+				$prices[ $i ] = $unit;
+				$total       += $unit * $qty;
+			}
+		}
+
+		$note = isset( $_POST['wcq_quote_note'] ) ? sanitize_textarea_field( wp_unslash( $_POST['wcq_quote_note'] ) ) : '';
+
+		update_post_meta(
+			$post_id,
+			'_wcq_quote',
+			array(
+				'prices' => $prices,
+				'note'   => $note,
+				'total'  => $total,
+			)
+		);
+
+		if ( ! empty( $_POST['wcq_send_quote'] ) && ! empty( $prices ) ) {
+			if ( ! get_post_meta( $post_id, '_wcq_accept_token', true ) ) {
+				update_post_meta( $post_id, '_wcq_accept_token', wp_generate_password( 24, false ) );
+			}
+			$this->force_status( $post_id, 'wcq-quoted' );
+
+			if ( function_exists( 'WC' ) ) {
+				WC()->mailer();
+			}
+			/**
+			 * Fires when an admin sends a quote to the customer.
+			 *
+			 * @param int $post_id Quote ID.
+			 */
+			do_action( 'wcq_quote_sent_notification', $post_id );
+		}
 	}
 }

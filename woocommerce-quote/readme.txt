@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.5.2
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,19 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.6.0 =
+* Phase 2 — quoting workflow:
+  * Admin "Quote pricing" meta box: enter a quoted unit price per line plus a
+    note, and email the quote to the customer (sets the status to Quoted).
+  * "Your quote" customer email (WC_Email) with the quoted prices and an accept
+    link.
+  * The accept link creates a pending WooCommerce order at the quoted prices and
+    sends the customer to checkout/pay; the quote becomes Accepted and the order
+    links back to it.
+  * Optional "hide price & Add to Cart" for quotable products, showing a
+    configurable "Price on request" label.
+* Verified end-to-end on WordPress + WooCommerce.
 
 = 0.5.2 =
 * Admin UI polish: align card header actions (e.g. "View all"), let the header

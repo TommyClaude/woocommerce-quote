@@ -3,7 +3,7 @@
  * Plugin Name:       Request a Quote for WooCommerce
  * Plugin URI:        https://github.com/TommyClaude/woocommerce-quote
  * Description:       Let customers collect products into a quote list and submit a request for a price instead of buying immediately. Store owners manage the requests in wp-admin.
- * Version:           0.5.2
+ * Version:           0.6.0
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            TommyClaude
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
 // ---------------------------------------------------------------------------
 
 /** Plugin version. Bump on every build so the user can track it. */
-define( 'WCQ_VERSION', '0.5.2' );
+define( 'WCQ_VERSION', '0.6.0' );
 
 /** Absolute path to the main plugin file. */
 define( 'WCQ_PLUGIN_FILE', __FILE__ );

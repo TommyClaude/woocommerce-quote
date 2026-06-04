@@ -68,6 +68,7 @@ final class WCQ_Plugin {
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-admin.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-rest.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-emails.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-accept.php';
 	}
 
 	/**
@@ -109,6 +110,7 @@ final class WCQ_Plugin {
 		$this->components['admin']    = new WCQ_Admin();
 		$this->components['rest']     = new WCQ_REST();
 		$this->components['emails']   = new WCQ_Emails();
+		$this->components['accept']   = new WCQ_Accept();
 
 		/**
 		 * Fires once every component has been instantiated.

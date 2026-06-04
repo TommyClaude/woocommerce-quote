@@ -24,6 +24,10 @@ class WCQ_Frontend {
 		// Single product button.
 		add_action( 'woocommerce_single_product_summary', array( $this, 'single_button_setup' ), 1 );
 
+		// Phase 2: hide price + block Add to Cart for quotable products when enabled.
+		add_filter( 'woocommerce_get_price_html', array( $this, 'maybe_hide_price' ), 99, 2 );
+		add_filter( 'woocommerce_is_purchasable', array( $this, 'maybe_block_purchase' ), 99, 2 );
+
 		// Shortcodes.
 		add_shortcode( 'woocommerce_quote', array( $this, 'shortcode_quote' ) );
 		add_shortcode( 'woocommerce_quote_count', array( $this, 'shortcode_count' ) );
@@ -107,11 +111,39 @@ class WCQ_Frontend {
 
 		$button = $this->get_button_html( $product, 'loop' );
 
-		if ( 'replace' === WCQ_Settings::get( 'button_mode' ) ) {
+		if ( 'replace' === WCQ_Settings::get( 'button_mode' ) || wcq_is_price_hidden( $product ) ) {
 			return $button;
 		}
 
 		return $html . ' ' . $button;
+	}
+
+	/**
+	 * Replace the price HTML with the "price on request" label when hidden.
+	 *
+	 * @param string     $price_html Price markup.
+	 * @param WC_Product $product    Product.
+	 * @return string
+	 */
+	public function maybe_hide_price( $price_html, $product ) {
+		if ( wcq_is_price_hidden( $product ) ) {
+			return '<span class="wcq-price-hidden">' . esc_html( wcq_get_hidden_price_label() ) . '</span>';
+		}
+		return $price_html;
+	}
+
+	/**
+	 * Make quotable products non-purchasable when their price is hidden.
+	 *
+	 * @param bool       $purchasable Whether the product is purchasable.
+	 * @param WC_Product $product     Product.
+	 * @return bool
+	 */
+	public function maybe_block_purchase( $purchasable, $product ) {
+		if ( wcq_is_price_hidden( $product ) ) {
+			return false;
+		}
+		return $purchasable;
 	}
 
 	/**
@@ -129,7 +161,7 @@ class WCQ_Frontend {
 			return;
 		}
 
-		if ( 'replace' === WCQ_Settings::get( 'button_mode' ) ) {
+		if ( 'replace' === WCQ_Settings::get( 'button_mode' ) || wcq_is_price_hidden( $product ) ) {
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 			add_action( 'woocommerce_single_product_summary', array( $this, 'render_single_button' ), 30 );
 		} else {
