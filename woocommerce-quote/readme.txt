@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.3.0 =
+* Admin management of quote records on the native list table: Customer / Items /
+  Total / Status / Date columns, a read-only detail meta box, and a status
+  control (New / Quoted / Accepted / Rejected / Expired) saved with a nonce and
+  capability check. Fires `wcq_quote_status_changed`.
 
 = 0.2.0 =
 * Quote list stored in the WooCommerce session (guests supported).

@@ -65,6 +65,7 @@ final class WCQ_Plugin {
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-ajax.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-frontend.php';
 		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-request.php';
+		require_once WCQ_PLUGIN_DIR . 'includes/class-wcq-admin.php';
 	}
 
 	/**
@@ -103,6 +104,7 @@ final class WCQ_Plugin {
 		$this->components['ajax']     = new WCQ_Ajax();
 		$this->components['frontend'] = new WCQ_Frontend();
 		$this->components['request']  = new WCQ_Request();
+		$this->components['admin']    = new WCQ_Admin();
 
 		/**
 		 * Fires once every component has been instantiated.
