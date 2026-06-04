@@ -20,8 +20,12 @@ Brand new — only README so far. Build per `PLAN.md`, **Phase 1 (MVP) first**.
   hooks `wcq_`, text domain `woocommerce-quote`.
 - Security: **nonce** on every form/AJAX, `sanitize_*` on all input, `esc_*` on all
   output, `current_user_can()` checks in admin.
-- i18n: wrap user-facing strings in `__()` / `esc_html__()` with text domain
-  `woocommerce-quote`.
+- i18n: wrap ALL user-facing strings in `__()` / `esc_html__()` with text domain
+  `woocommerce-quote`. **Default UI is English; ship a bundled `.pot` so anyone can
+  translate** — the plugin targets a global audience (not Vietnam-specific).
+- Behaviour is driven by **admin settings**, not hardcoded: button mode (replace
+  Add-to-Cart vs both), RFQ scope (all / category / product / hidden-price / role),
+  and access (guests vs login required). See `PLAN.md` §6.
 - Declare the WooCommerce dependency; on activation, show an admin notice and bail if
   WooCommerce is inactive.
 - Be **HPOS-compatible** (declare `custom_order_tables` compatibility in `before_woocommerce_init`).

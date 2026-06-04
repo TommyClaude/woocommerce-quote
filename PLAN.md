@@ -1,9 +1,9 @@
 # WooCommerce Quote — Plan / Spec
 
-> ⚠️ Assumptions are marked with ⚠️. Confirm/correct them with the user at the start
-> of the session before building.
-> ⚠️ Assumed scope: a self-contained **Request-a-Quote (RFQ)** plugin for a single
-> store. NOT tiered B2B wholesale pricing (can be added later).
+> Scope: a self-contained **Request-a-Quote (RFQ)** plugin for a **global audience**
+> (English UI, fully translation-ready). NOT tiered B2B wholesale pricing (later).
+> The key behaviour decisions have been confirmed with the user — see **section 6**.
+> All three behaviours (button mode, RFQ scope, guest access) are **admin settings**.
 
 ## 1. Goal & user stories
 - As a **customer**, I can add products to a **Quote list** and submit a request with my
@@ -17,8 +17,9 @@
 ### Phase 1 — MVP (build this first)
 1. **Add-to-Quote button**
    - Shows on the shop loop + single product pages.
-   - Config: enable globally, or per category / per product / per user role.
-   - Option to replace, or sit beside, the Add-to-Cart button.
+   - **Scope** (admin setting): all products / selected categories / selected products /
+     hidden-price products only / selected user roles.
+   - **Button mode** (admin setting): replace Add-to-Cart, or show both buttons.
 2. **Quote list (basket)**
    - A page rendered by shortcode `[woocommerce_quote]` showing added items.
    - Change quantity, remove item. Stored in the WooCommerce session / cookie (guests OK).
@@ -34,8 +35,12 @@
 6. **Emails**
    - To admin: "new quote request received".
    - To customer: "we received your request" confirmation.
-7. **Settings page** (under WooCommerce → Quote): enable rules, button text,
-   recipient email, which page is the quote page.
+7. **Settings page** (WooCommerce → Settings → Quote tab) — all behaviour configurable:
+   - **Button mode**: replace Add-to-Cart / show both.
+   - **RFQ scope**: all / selected categories / selected products / hidden-price only /
+     selected user roles.
+   - **Access**: allow guests / require login.
+   - Button label text, recipient email(s), and which page renders the quote list.
 
 ### Phase 2 — Quoting workflow
 - Admin enters a quoted price per line + total + note → sends a "Your quote" email.
@@ -94,9 +99,15 @@ woocommerce-quote/                 (the plugin folder)
 9. `blueprint.json` for Playground (install WooCommerce + this plugin) + smoke test.
 10. Package the zip; bump version.
 
-## 6. Open questions — confirm with the user before/while building
-- ⚠️ Replace Add-to-Cart entirely, or show **both** buttons?
-- ⚠️ Which products use RFQ — **all**, specific **categories**, or **hidden-price** only?
-- ⚠️ Allow **guests**, or require login to request a quote?
-- ⚠️ Build Phase 2 (accept → order) now, or ship Phase 1 first?
-- ⚠️ Vietnamese UI strings out of the box, or English with i18n only?
+## 6. Decisions (confirmed with the user)
+- **Button mode** → admin **setting**: (a) replace Add-to-Cart, or (b) show both.
+- **RFQ scope** → admin **setting**: all products / by category / specific products /
+  hidden-price products only / by user role.
+- **Access** → admin **setting**: allow guests, or require login.
+- **Language** → ship **English UI strings, fully translation-ready** (text domain
+  `woocommerce-quote` + bundled `.pot`). Plugin targets a **global** audience, not VN-only.
+- **Phasing** → build **Phase 1 (MVP) first** and ship it usable on its own, then build
+  **Phase 2** (admin quotes → accept → order). Phase 2 is in scope, done after Phase 1.
+
+Because button mode / scope / access are all settings, the **Settings page (item 7) and
+the scope-resolution logic are core Phase 1 work**, not optional.
