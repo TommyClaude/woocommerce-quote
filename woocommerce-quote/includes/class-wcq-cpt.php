@@ -76,7 +76,8 @@ class WCQ_CPT {
 			'labels'              => $labels,
 			'public'              => false,
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			// Added as a submenu of the "WooCommerce Quote" menu by WCQ_Admin.
+			'show_in_menu'        => false,
 			'show_in_admin_bar'   => false,
 			'show_in_nav_menus'   => false,
 			'show_in_rest'        => false,

@@ -17,6 +17,13 @@ defined( 'ABSPATH' ) || exit;
 class WCQ_Admin {
 
 	/**
+	 * Top-level menu slug (also the React app page).
+	 *
+	 * @var string
+	 */
+	const MENU_SLUG = 'wcq-dashboard';
+
+	/**
 	 * Constructor — register admin-only hooks.
 	 */
 	public function __construct() {
@@ -34,7 +41,56 @@ class WCQ_Admin {
 		add_action( "save_post_{$type}", array( $this, 'save_status' ), 10, 2 );
 
 		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 10, 2 );
+		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+	}
+
+	/**
+	 * Register the top-level "WooCommerce Quote" menu + submenus.
+	 *
+	 * The React app renders on the top-level page; the native quote list is
+	 * added as a submenu so per-record CRUD stays on the robust core screen.
+	 *
+	 * @return void
+	 */
+	public function register_menu() {
+		add_menu_page(
+			__( 'WooCommerce Quote', 'woocommerce-quote' ),
+			__( 'WooCommerce Quote', 'woocommerce-quote' ),
+			'manage_woocommerce',
+			self::MENU_SLUG,
+			array( $this, 'render_app_page' ),
+			'dashicons-format-status',
+			58
+		);
+
+		// Rename the auto-created first submenu to "Dashboard".
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Dashboard', 'woocommerce-quote' ),
+			__( 'Dashboard', 'woocommerce-quote' ),
+			'manage_woocommerce',
+			self::MENU_SLUG,
+			array( $this, 'render_app_page' )
+		);
+
+		// Native quote-records list table.
+		add_submenu_page(
+			self::MENU_SLUG,
+			__( 'Quote Requests', 'woocommerce-quote' ),
+			__( 'Quote Requests', 'woocommerce-quote' ),
+			'manage_woocommerce',
+			'edit.php?post_type=' . WCQ_CPT::POST_TYPE
+		);
+	}
+
+	/**
+	 * Render the React app mount point.
+	 *
+	 * @return void
+	 */
+	public function render_app_page() {
+		echo '<div class="wrap"><div id="wcq-admin-app"></div></div>';
 	}
 
 	/**
@@ -48,15 +104,172 @@ class WCQ_Admin {
 	}
 
 	/**
-	 * Enqueue a small admin stylesheet on quote screens only.
+	 * Enqueue assets: the React app on its page, plus the list-table styles.
+	 *
+	 * @param string $hook Current admin page hook suffix.
+	 * @return void
+	 */
+	public function enqueue( $hook = '' ) {
+		if ( 'toplevel_page_' . self::MENU_SLUG === $hook ) {
+			$this->enqueue_app();
+		}
+
+		if ( $this->is_quote_screen() ) {
+			wp_enqueue_style( 'wcq-admin', WCQ_PLUGIN_URL . 'assets/css/wcq-admin.css', array(), WCQ_VERSION );
+		}
+	}
+
+	/**
+	 * Enqueue the compiled React app and hand it its bootstrap data.
 	 *
 	 * @return void
 	 */
-	public function enqueue() {
-		if ( ! $this->is_quote_screen() ) {
+	public function enqueue_app() {
+		$asset_path = WCQ_PLUGIN_DIR . 'build/index.asset.php';
+
+		if ( ! file_exists( $asset_path ) ) {
+			add_action( 'admin_notices', array( $this, 'build_missing_notice' ) );
 			return;
 		}
-		wp_enqueue_style( 'wcq-admin', WCQ_PLUGIN_URL . 'assets/css/wcq-admin.css', array(), WCQ_VERSION );
+
+		$asset = include $asset_path;
+
+		wp_enqueue_script(
+			'wcq-admin-app',
+			WCQ_PLUGIN_URL . 'build/index.js',
+			$asset['dependencies'],
+			$asset['version'],
+			true
+		);
+		wp_set_script_translations( 'wcq-admin-app', 'woocommerce-quote', WCQ_PLUGIN_DIR . 'languages' );
+
+		if ( file_exists( WCQ_PLUGIN_DIR . 'build/index.css' ) ) {
+			wp_enqueue_style(
+				'wcq-admin-app',
+				WCQ_PLUGIN_URL . 'build/index.css',
+				array( 'wp-components' ),
+				$asset['version']
+			);
+		}
+
+		wp_localize_script( 'wcq-admin-app', 'wcqAdmin', $this->app_data() );
+	}
+
+	/**
+	 * Notice shown when the admin app has not been built yet.
+	 *
+	 * @return void
+	 */
+	public function build_missing_notice() {
+		echo '<div class="notice notice-warning"><p>';
+		echo esc_html__( 'WooCommerce Quote: please run "npm install && npm run build" to compile the admin app.', 'woocommerce-quote' );
+		echo '</p></div>';
+	}
+
+	/**
+	 * Bootstrap data passed to the React app.
+	 *
+	 * @return array
+	 */
+	protected function app_data() {
+		return array(
+			'version'    => WCQ_VERSION,
+			'supportUrl' => 'https://github.com/TommyClaude/woocommerce-quote/issues',
+			'listUrl'    => admin_url( 'edit.php?post_type=' . WCQ_CPT::POST_TYPE ),
+			'options'    => array(
+				'categories' => $this->category_options(),
+				'products'   => $this->product_options(),
+				'roles'      => $this->role_options(),
+				'pages'      => $this->page_options(),
+			),
+		);
+	}
+
+	/**
+	 * Product category options for the scope token field.
+	 *
+	 * @return array<int,array{id:int,name:string}>
+	 */
+	protected function category_options() {
+		$out   = array();
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => false,
+				'number'     => 300,
+			)
+		);
+		if ( is_array( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$out[] = array(
+					'id'   => (int) $term->term_id,
+					'name' => $term->name,
+				);
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * A bounded list of products for the scope token field.
+	 *
+	 * @return array<int,array{id:int,name:string}>
+	 */
+	protected function product_options() {
+		$out = array();
+		if ( ! function_exists( 'wc_get_products' ) ) {
+			return $out;
+		}
+		$products = wc_get_products(
+			array(
+				'limit'   => 100,
+				'status'  => 'publish',
+				'orderby' => 'title',
+				'order'   => 'ASC',
+				'return'  => 'objects',
+			)
+		);
+		foreach ( $products as $product ) {
+			$out[] = array(
+				'id'   => $product->get_id(),
+				'name' => $product->get_name(),
+			);
+		}
+		return $out;
+	}
+
+	/**
+	 * User-role options for the scope token field.
+	 *
+	 * @return array<int,array{id:string,name:string}>
+	 */
+	protected function role_options() {
+		$out   = array();
+		$roles = function_exists( 'wp_roles' ) ? wp_roles()->roles : array();
+		foreach ( $roles as $slug => $role ) {
+			$out[] = array(
+				'id'   => $slug,
+				'name' => translate_user_role( $role['name'] ),
+			);
+		}
+		return $out;
+	}
+
+	/**
+	 * Published pages for the quote-page selector.
+	 *
+	 * @return array<int,array{id:int,title:string}>
+	 */
+	protected function page_options() {
+		$out   = array();
+		$pages = get_pages( array( 'number' => 300 ) );
+		foreach ( (array) $pages as $page ) {
+			$out[] = array(
+				'id'    => $page->ID,
+				'title' => '' !== $page->post_title ? $page->post_title : sprintf( '#%d', $page->ID ),
+			);
+		}
+		return $out;
 	}
 
 	/**

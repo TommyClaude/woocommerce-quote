@@ -1,10 +1,10 @@
 === Request a Quote for WooCommerce ===
 Contributors: tommyclaude
 Tags: woocommerce, request a quote, rfq, quote, wholesale
-Requires at least: 6.0
-Tested up to: 6.5
+Requires at least: 6.6
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,16 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.4.0 =
+* React admin app (built with @wordpress/components + @wordpress/element via
+  @wordpress/scripts): a "WooCommerce Quote" top-level menu with a header
+  (logo + Support) and Dashboard / Settings / About us tabs.
+* Dashboard: stat cards, a 30-day trend chart (custom SVG) and recent requests.
+* Settings: every option as a WP component, saved over REST.
+* About us: plugin blurb + cross-sell.
+* REST endpoints (`wcq/v1/settings`, `wcq/v1/stats`) guarded by
+  manage_woocommerce; the native quote list nests under the new menu.
 
 = 0.3.0 =
 * Admin management of quote records on the native list table: Customer / Items /
