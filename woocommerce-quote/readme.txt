@@ -1,0 +1,45 @@
+=== Request a Quote for WooCommerce ===
+Contributors: tommyclaude
+Tags: woocommerce, request a quote, rfq, quote, wholesale
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+Stable tag: 0.1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Let customers collect products into a quote list and submit a request for a price instead of buying immediately. Store owners manage requests in wp-admin.
+
+== Description ==
+
+Request a Quote for WooCommerce adds an "Add to Quote" flow to your store. Customers
+gather products into a quote list and submit a request with their contact details, and
+the store owner reviews and replies with a price from wp-admin. Ideal for B2B, wholesale,
+hidden-price and made-to-order catalogs.
+
+All behaviour is driven by admin settings:
+
+* **Button mode** — replace Add to Cart, or show both buttons.
+* **RFQ scope** — all products, selected categories, selected products, hidden-price
+  products only, or selected user roles.
+* **Access** — allow guests, or require login.
+
+The plugin is HPOS-compatible and ships with an English UI that is fully translation-ready
+(text domain `woocommerce-quote`).
+
+This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap.
+
+== Installation ==
+
+1. Make sure WooCommerce is installed and active.
+2. Upload the plugin folder to `/wp-content/plugins/`, or install the zip from
+   Plugins → Add New → Upload Plugin.
+3. Activate the plugin through the Plugins screen.
+4. Configure it under the "WooCommerce Quote" menu.
+
+== Changelog ==
+
+= 0.1.0 =
+* Initial scaffold: plugin bootstrap, WooCommerce-active guard, HPOS compatibility
+  declaration, activation/deactivation, and the `wcq_quote` custom post type with its
+  New / Quoted / Accepted / Rejected / Expired statuses.
