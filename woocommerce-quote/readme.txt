@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,14 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.5.1 =
+* Fix: the quote post type mapped the *meta* capabilities (edit_post / read_post /
+  delete_post) to `manage_woocommerce`, which made WordPress register
+  `manage_woocommerce` as a meta capability. That broke
+  `current_user_can( 'manage_woocommerce' )` site-wide and hid WooCommerce's own
+  admin submenus (Settings, Status) as well as this plugin's menu. Only the
+  primitive capabilities are mapped now. Verified on WordPress + WooCommerce.
 
 = 0.5.0 =
 * Transactional emails as WC_Email subclasses (manageable under WooCommerce →

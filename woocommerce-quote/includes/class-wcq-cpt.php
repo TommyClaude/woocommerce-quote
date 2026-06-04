@@ -92,17 +92,24 @@ class WCQ_CPT {
 			'supports'            => array( 'title' ),
 			'map_meta_cap'        => true,
 			'capability_type'     => 'post',
+			// IMPORTANT: only map *primitive* caps to manage_woocommerce. Never map
+			// the meta caps (edit_post/read_post/delete_post) to a shared cap like
+			// manage_woocommerce — WordPress would then register manage_woocommerce
+			// as a meta capability globally, breaking current_user_can() for it
+			// everywhere (it would hide WooCommerce's own menus). With map_meta_cap
+			// enabled, WP maps the meta caps to these primitives automatically.
 			'capabilities'        => array(
-				'create_posts'        => 'do_not_allow',
-				'edit_post'           => 'manage_woocommerce',
-				'read_post'           => 'manage_woocommerce',
-				'delete_post'         => 'manage_woocommerce',
-				'edit_posts'          => 'manage_woocommerce',
-				'edit_others_posts'   => 'manage_woocommerce',
-				'publish_posts'       => 'manage_woocommerce',
-				'read_private_posts'  => 'manage_woocommerce',
-				'delete_posts'        => 'manage_woocommerce',
-				'delete_others_posts' => 'manage_woocommerce',
+				'create_posts'           => 'do_not_allow',
+				'edit_posts'             => 'manage_woocommerce',
+				'edit_others_posts'      => 'manage_woocommerce',
+				'edit_published_posts'   => 'manage_woocommerce',
+				'edit_private_posts'     => 'manage_woocommerce',
+				'publish_posts'          => 'manage_woocommerce',
+				'read_private_posts'     => 'manage_woocommerce',
+				'delete_posts'           => 'manage_woocommerce',
+				'delete_others_posts'    => 'manage_woocommerce',
+				'delete_published_posts' => 'manage_woocommerce',
+				'delete_private_posts'   => 'manage_woocommerce',
 			),
 		);
 
