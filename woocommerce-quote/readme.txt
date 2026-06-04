@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.4.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,17 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.5.0 =
+* Transactional emails as WC_Email subclasses (manageable under WooCommerce →
+  Settings → Emails): "New quote request" to the store and a "request received"
+  confirmation to the customer, with HTML + plain-text templates.
+* Bundled translation template (languages/woocommerce-quote.pot) plus a
+  no-dependency POT generator (bin/make-pot.php).
+* WordPress Playground blueprint (blueprint.json) that installs WooCommerce and
+  the plugin and seeds a demo product, quote page and sample request; GitHub
+  Pages preview launcher (index.html).
+* Phase 1 (MVP) is now feature-complete.
 
 = 0.4.0 =
 * React admin app (built with @wordpress/components + @wordpress/element via

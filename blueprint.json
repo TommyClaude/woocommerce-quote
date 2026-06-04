@@ -1,0 +1,35 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Request a Quote for WooCommerce — live demo",
+		"description": "Installs WooCommerce + the plugin, seeds a sample product, a Request a Quote page and a sample request."
+	},
+	"landingPage": "/wp-admin/admin.php?page=wcq-dashboard",
+	"preferredVersions": { "php": "8.2", "wp": "latest" },
+	"phpExtensionBundles": ["kitchen-sink"],
+	"features": { "networking": true },
+	"steps": [
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" },
+			"options": { "activate": true }
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://tommyclaude.github.io/woocommerce-quote/woocommerce-quote.zip"
+			},
+			"options": { "activate": true }
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; if ( class_exists('WC_Product_Simple') ) { $prod = get_page_by_path('wcq-sample', OBJECT, 'product'); if ( ! $prod ) { $p = new WC_Product_Simple(); $p->set_name('Sample Widget'); $p->set_slug('wcq-sample'); $p->set_regular_price('49.00'); $p->set_status('publish'); $pid = $p->save(); } else { $pid = $prod->ID; } $page = get_page_by_path('request-a-quote'); if ( ! $page ) { $page_id = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Request a Quote','post_name'=>'request-a-quote','post_content'=>'[woocommerce_quote]')); } else { $page_id = $page->ID; } $opt = get_option('wcq_settings', array()); if ( ! is_array($opt) ) { $opt = array(); } $opt['quote_page_id'] = (int) $page_id; update_option('wcq_settings', $opt); $existing = get_posts(array('post_type'=>'wcq_quote','numberposts'=>1,'post_status'=>'any')); if ( ! $existing ) { $q = wp_insert_post(array('post_type'=>'wcq_quote','post_status'=>'wcq-new','post_title'=>'Quote')); if ( $q && ! is_wp_error($q) ) { wp_update_post(array('ID'=>$q,'post_title'=>'Quote #'.$q.' - Jane Doe')); update_post_meta($q,'_wcq_customer', array('name'=>'Jane Doe','email'=>'jane@example.com','phone'=>'','company'=>'Acme Co','message'=>'Please quote 10 units.')); update_post_meta($q,'_wcq_items', array(array('product_id'=>(int)$pid,'variation_id'=>0,'name'=>'Sample Widget','sku'=>'','quantity'=>10,'price'=>49.0))); update_post_meta($q,'_wcq_totals', array('subtotal'=>490.0,'currency'=>'USD')); } } }"
+		}
+	]
+}

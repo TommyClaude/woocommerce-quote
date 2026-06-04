@@ -1,0 +1,595 @@
+# Copyright (C) TommyClaude
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Request a Quote for WooCommerce\n"
+"Report-Msgid-Bugs-To: https://github.com/TommyClaude/woocommerce-quote\n"
+"POT-Creation-Date: 2026-06-04 20:17+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE\n"
+"X-Domain: woocommerce-quote\n"
+#: src/components/trend-chart.js:76
+msgid "%1$s: %2$d requests"
+msgstr ""
+
+#: includes/class-wcq-admin.php:332
+msgid "%d product"
+msgid_plural "%d products"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/tabs/dashboard.js:98
+msgid "(no name)"
+msgstr ""
+
+#: templates/emails/admin-new-quote.php:20 templates/emails/plain/admin-new-quote.php:18
+msgid "A customer has submitted a new quote request."
+msgstr ""
+
+#: src/tabs/about.js:22
+msgid "About this plugin"
+msgstr ""
+
+#: src/app.js:15
+msgid "About us"
+msgstr ""
+
+#: src/tabs/dashboard.js:58
+msgid "Accepted"
+msgstr ""
+
+#: src/tabs/settings.js:182
+msgid "Access"
+msgstr ""
+
+#: includes/wcq-core-functions.php:143 src/tabs/settings.js:198
+msgid "Add to Quote"
+msgstr ""
+
+#: includes/class-wcq-ajax.php:92
+msgid "Added to your quote list."
+msgstr ""
+
+#: includes/class-wcq-frontend.php:69
+msgid "Added ✓"
+msgstr ""
+
+#: includes/class-wcq-frontend.php:68
+msgid "Adding…"
+msgstr ""
+
+#: src/tabs/settings.js:138
+msgid "All products"
+msgstr ""
+
+#: src/tabs/settings.js:185
+msgid "Allow guests"
+msgstr ""
+
+#: templates/quote-list.php:49
+msgid "Browse products"
+msgstr ""
+
+#: src/tabs/settings.js:196
+msgid "Button label"
+msgstr ""
+
+#: src/tabs/settings.js:119
+msgid "Button mode"
+msgstr ""
+
+#: src/tabs/settings.js:149
+msgid "Categories"
+msgstr ""
+
+#: src/tabs/settings.js:204
+msgid "Comma-separated. New requests are emailed here."
+msgstr ""
+
+#: includes/class-wcq-admin.php:411 templates/emails/admin-new-quote.php:37 templates/emails/plain/admin-new-quote.php:30 templates/quote-form.php:52
+msgid "Company"
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote-received.php:26
+msgid "Confirmation sent to the customer after they submit a quote request."
+msgstr ""
+
+#: templates/quote-list.php:35
+msgid "Continue browsing"
+msgstr ""
+
+#: src/tabs/dashboard.js:60
+msgid "Conversion rate"
+msgstr ""
+
+#: src/tabs/settings.js:60
+msgid "Could not load settings."
+msgstr ""
+
+#: src/tabs/dashboard.js:33
+msgid "Could not load statistics."
+msgstr ""
+
+#: src/tabs/settings.js:88
+msgid "Could not save settings."
+msgstr ""
+
+#: includes/class-wcq-admin.php:287 templates/emails/admin-new-quote.php:29 templates/emails/plain/admin-new-quote.php:23 src/tabs/dashboard.js:88
+msgid "Customer"
+msgstr ""
+
+#: includes/class-wcq-admin.php:70 includes/class-wcq-admin.php:71 src/app.js:13
+msgid "Dashboard"
+msgstr ""
+
+#: includes/class-wcq-admin.php:291 src/tabs/dashboard.js:90
+msgid "Date"
+msgstr ""
+
+#: src/tabs/settings.js:218
+msgid "Delete all plugin data when uninstalling"
+msgstr ""
+
+#: includes/class-wcq-admin.php:409 includes/class-wcq-admin.php:418 templates/emails/admin-new-quote.php:32 templates/emails/plain/admin-new-quote.php:25 templates/quote-form.php:42
+msgid "Email"
+msgstr ""
+
+#: includes/class-wcq-admin.php:474 templates/emails/parts/items-table.php:38 templates/emails/plain/admin-new-quote.php:44
+msgid "Estimated subtotal"
+msgstr ""
+
+#: templates/quote-list.php:98
+msgid "Estimated subtotal:"
+msgstr ""
+
+#: src/tabs/about.js:39
+msgid "Get support"
+msgstr ""
+
+#: templates/emails/customer-quote-received.php:23 templates/emails/plain/customer-quote-received.php:19
+msgid "Hi %s,"
+msgstr ""
+
+#: src/tabs/settings.js:141
+msgid "Hidden-price products only"
+msgstr ""
+
+#: src/tabs/about.js:12
+msgid "Instant, shareable previews for your media — generate and link in one click."
+msgstr ""
+
+#: src/tabs/about.js:33
+msgid "It is fully translation-ready and driven by admin settings, so you control the button mode, which products are quotable, and whether guests can request quotes."
+msgstr ""
+
+#: includes/class-wcq-ajax.php:127
+msgid "Item removed."
+msgstr ""
+
+#: includes/class-wcq-admin.php:288
+msgid "Items"
+msgstr ""
+
+#: src/tabs/about.js:55
+msgid "Learn more"
+msgstr ""
+
+#: templates/quote-form.php:31
+msgid "Leave this field empty"
+msgstr ""
+
+#: includes/class-wcq-admin.php:439
+msgid "Line total"
+msgstr ""
+
+#: includes/class-wcq-admin.php:428 templates/emails/admin-new-quote.php:42 templates/emails/plain/admin-new-quote.php:33 templates/quote-form.php:57
+msgid "Message"
+msgstr ""
+
+#: src/tabs/about.js:45
+msgid "More from us"
+msgstr ""
+
+#: includes/class-wcq-admin.php:408 templates/emails/admin-new-quote.php:31 templates/emails/plain/admin-new-quote.php:24 templates/quote-form.php:37
+msgid "Name"
+msgstr ""
+
+#: includes/emails/class-wcq-email-admin-new-quote.php:25 includes/emails/class-wcq-email-admin-new-quote.php:59
+msgid "New quote request"
+msgstr ""
+
+#: includes/class-wcq-admin.php:443
+msgid "No products recorded."
+msgstr ""
+
+#: includes/class-wcq-cpt.php:71
+msgid "No quote requests found in Trash."
+msgstr ""
+
+#: includes/class-wcq-cpt.php:70
+msgid "No quote requests found."
+msgstr ""
+
+#: src/tabs/dashboard.js:83
+msgid "No quote requests yet."
+msgstr ""
+
+#: src/tabs/dashboard.js:112
+msgid "Open"
+msgstr ""
+
+#: templates/emails/admin-new-quote.php:25
+msgid "Open this request in your dashboard"
+msgstr ""
+
+#: src/tabs/dashboard.js:56
+msgid "Pending (New)"
+msgstr ""
+
+#: includes/class-wcq-admin.php:410 templates/emails/admin-new-quote.php:34 templates/emails/plain/admin-new-quote.php:27 templates/quote-form.php:47
+msgid "Phone"
+msgstr ""
+
+#: includes/class-wcq-request.php:66
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-wcq-request.php:62
+msgid "Please enter your name."
+msgstr ""
+
+#: includes/class-wcq-ajax.php:41
+msgid "Please log in to request a quote."
+msgstr ""
+
+#: includes/class-wcq-request.php:46
+msgid "Please log in to submit a quote request."
+msgstr ""
+
+#: includes/class-wcq-admin.php:438 templates/emails/parts/items-table.php:19 templates/quote-list.php:60
+msgid "Price"
+msgstr ""
+
+#: includes/class-wcq-admin.php:435 templates/emails/parts/items-table.php:16 templates/quote-list.php:59
+msgid "Product"
+msgstr ""
+
+#: src/tabs/settings.js:159
+msgid "Products"
+msgstr ""
+
+#: includes/class-wcq-admin.php:437 templates/emails/parts/items-table.php:18
+msgid "Qty"
+msgstr ""
+
+#: templates/quote-list.php:61 templates/quote-list.php:89
+msgid "Quantity"
+msgstr ""
+
+#: includes/class-wcq-admin.php:286
+msgid "Quote"
+msgstr ""
+
+#: includes/class-wcq-request.php:165
+msgid "Quote #%1$d — %2$s"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:67
+msgid "Quote Request"
+msgstr ""
+
+#: includes/class-wcq-admin.php:80 includes/class-wcq-admin.php:81 includes/class-wcq-cpt.php:66
+msgid "Quote Requests"
+msgstr ""
+
+#: includes/class-wcq-admin.php:376
+msgid "Quote details"
+msgstr ""
+
+#: src/tabs/settings.js:210
+msgid "Quote list page"
+msgstr ""
+
+#: includes/class-wcq-ajax.php:110
+msgid "Quote list updated."
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote-received.php:25
+msgid "Quote request received"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:72
+msgid "Quote requests list"
+msgstr ""
+
+#: src/components/trend-chart.js:42
+msgid "Quote requests over the last 30 days"
+msgstr ""
+
+#: includes/class-wcq-admin.php:495
+msgid "Quote status"
+msgstr ""
+
+#: includes/class-wcq-request.php:151
+msgid "Quote — %s"
+msgstr ""
+
+#: src/tabs/dashboard.js:57
+msgid "Quoted"
+msgstr ""
+
+#: src/tabs/settings.js:134
+msgid "RFQ scope"
+msgstr ""
+
+#: src/tabs/dashboard.js:76
+msgid "Recent requests"
+msgstr ""
+
+#: src/tabs/settings.js:203
+msgid "Recipient email(s)"
+msgstr ""
+
+#: templates/emails/plain/admin-new-quote.php:21
+msgid "Reference: #%d"
+msgstr ""
+
+#: templates/quote-list.php:73
+msgid "Remove this item"
+msgstr ""
+
+#: src/tabs/settings.js:124
+msgid "Replace Add to Cart"
+msgstr ""
+
+#: includes/class-wcq-plugin.php:156 src/components/header.js:19
+msgid "Request a Quote for WooCommerce"
+msgstr ""
+
+#: src/tabs/about.js:27
+msgid "Request a Quote for WooCommerce lets your customers collect products into a quote list and ask for a price instead of buying immediately. Perfect for B2B, wholesale, hidden-price and made-to-order catalogs."
+msgstr ""
+
+#: templates/quote-form.php:24
+msgid "Request a quote"
+msgstr ""
+
+#: templates/quote-list.php:23
+msgid "Request received"
+msgstr ""
+
+#: includes/class-wcq-admin.php:432 templates/emails/admin-new-quote.php:46 templates/emails/plain/admin-new-quote.php:36
+msgid "Requested products"
+msgstr ""
+
+#: src/tabs/dashboard.js:67
+msgid "Requests — last 30 days"
+msgstr ""
+
+#: src/tabs/settings.js:186
+msgid "Require login"
+msgstr ""
+
+#: includes/class-wcq-admin.php:436 templates/emails/parts/items-table.php:17
+msgid "SKU"
+msgstr ""
+
+#: src/tabs/settings.js:227
+msgid "Save settings"
+msgstr ""
+
+#: src/tabs/settings.js:227
+msgid "Saving…"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:69
+msgid "Search Quote Requests"
+msgstr ""
+
+#: includes/class-wcq-ajax.php:38
+msgid "Security check failed. Please refresh and try again."
+msgstr ""
+
+#: includes/class-wcq-request.php:35
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#: src/tabs/settings.js:139
+msgid "Selected categories"
+msgstr ""
+
+#: src/tabs/settings.js:140
+msgid "Selected products"
+msgstr ""
+
+#: src/tabs/settings.js:142
+msgid "Selected user roles"
+msgstr ""
+
+#: includes/emails/class-wcq-email-admin-new-quote.php:26
+msgid "Sent to the store when a customer submits a quote request."
+msgstr ""
+
+#: src/app.js:14
+msgid "Settings"
+msgstr ""
+
+#: src/tabs/settings.js:84
+msgid "Settings saved."
+msgstr ""
+
+#: src/tabs/settings.js:123
+msgid "Show both buttons"
+msgstr ""
+
+#: src/tabs/settings.js:120
+msgid "Show the Add to Quote button alongside Add to Cart, or replace it."
+msgstr ""
+
+#: includes/class-wcq-frontend.php:70
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/class-wcq-ajax.php:83
+msgid "Sorry, that product could not be found."
+msgstr ""
+
+#: includes/class-wcq-request.php:109
+msgid "Sorry, we could not save your request. Please try again."
+msgstr ""
+
+#: includes/class-wcq-admin.php:290 includes/class-wcq-admin.php:385 src/tabs/dashboard.js:89
+msgid "Status"
+msgstr ""
+
+#: templates/quote-form.php:62
+msgid "Submit request"
+msgstr ""
+
+#: src/components/header.js:31
+msgid "Support"
+msgstr ""
+
+#: templates/emails/customer-quote-received.php:27 templates/emails/plain/customer-quote-received.php:21
+msgid "Thank you for your quote request. We have received it and will get back to you with a price soon."
+msgstr ""
+
+#: includes/class-wcq-request.php:126
+msgid "Thank you! Your quote request has been sent. We will get back to you soon."
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote-received.php:52
+msgid "Thanks for your request"
+msgstr ""
+
+#: templates/quote-list.php:28
+msgid "Thanks for your request. Your reference number is #%s. We will email you a quote shortly."
+msgstr ""
+
+#: includes/class-wcq-ajax.php:107 includes/class-wcq-ajax.php:124
+msgid "That item is no longer in your quote list."
+msgstr ""
+
+#: src/tabs/settings.js:211
+msgid "The page that contains the [woocommerce_quote] shortcode."
+msgstr ""
+
+#: includes/class-wcq-ajax.php:87
+msgid "This product is not available for quote requests."
+msgstr ""
+
+#: includes/class-wcq-admin.php:289
+msgid "Total"
+msgstr ""
+
+#: src/tabs/dashboard.js:55
+msgid "Total requests"
+msgstr ""
+
+#: includes/class-wcq-admin.php:506
+msgid "Use the Update button to save the status."
+msgstr ""
+
+#: src/tabs/settings.js:169
+msgid "User roles"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:68
+msgid "View Quote Request"
+msgstr ""
+
+#: src/tabs/dashboard.js:78
+msgid "View all"
+msgstr ""
+
+#: src/tabs/about.js:11
+msgid "WP Image Preview"
+msgstr ""
+
+#: includes/emails/class-wcq-email-customer-quote-received.php:43
+msgid "We received your quote request"
+msgstr ""
+
+#: src/tabs/settings.js:135
+msgid "Which products show the Add to Quote button."
+msgstr ""
+
+#: includes/class-wcq-admin.php:58 includes/class-wcq-admin.php:59 src/components/header.js:17
+msgid "WooCommerce Quote"
+msgstr ""
+
+#: includes/class-wcq-admin.php:165
+msgid "WooCommerce Quote: please run \"npm install && npm run build\" to compile the admin app."
+msgstr ""
+
+#: includes/class-wcq-plugin.php:158
+msgid "WooCommerce must be installed and active for this plugin to work."
+msgstr ""
+
+#: includes/class-wcq-request.php:70 templates/quote-list.php:47
+msgid "Your quote list is empty."
+msgstr ""
+
+#: templates/emails/customer-quote-received.php:32 templates/emails/plain/customer-quote-received.php:24
+msgid "Your reference number is #%d."
+msgstr ""
+
+#: templates/emails/customer-quote-received.php:36 templates/emails/plain/customer-quote-received.php:26
+msgid "Your requested products"
+msgstr ""
+
+#: includes/emails/class-wcq-email-admin-new-quote.php:50
+msgid "[{site_title}] New quote request #{quote_id}"
+msgstr ""
+
+#: src/tabs/settings.js:101
+msgid "— Select a page —"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:65
+msgctxt "Add New on Toolbar"
+msgid "Quote Request"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:64
+msgctxt "Admin Menu text"
+msgid "Quote Requests"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:62
+msgctxt "Post type general name"
+msgid "Quote Requests"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:63
+msgctxt "Post type singular name"
+msgid "Quote Request"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:45
+msgctxt "Quote status"
+msgid "Accepted"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:47
+msgctxt "Quote status"
+msgid "Expired"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:43
+msgctxt "Quote status"
+msgid "New"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:44
+msgctxt "Quote status"
+msgid "Quoted"
+msgstr ""
+
+#: includes/class-wcq-cpt.php:46
+msgctxt "Quote status"
+msgid "Rejected"
+msgstr ""
+
