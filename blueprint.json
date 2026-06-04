@@ -24,7 +24,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/TommyClaude/woocommerce-quote/refs/heads/claude/dazzling-brown-L0gNu/woocommerce-quote.zip"
+				"url": "https://raw.githubusercontent.com/TommyClaude/woocommerce-quote/86e19a4e43510de59b26f861972983b5635f6d05/woocommerce-quote.zip"
 			},
 			"options": { "activate": true }
 		},
