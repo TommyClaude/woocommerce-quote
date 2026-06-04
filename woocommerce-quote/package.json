@@ -1,6 +1,6 @@
 {
   "name": "woocommerce-quote",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "description": "Admin app (Dashboard / Settings / About) for Request a Quote for WooCommerce, built with @wordpress/components and @wordpress/element.",
   "license": "GPL-2.0-or-later",
