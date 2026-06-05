@@ -152,6 +152,16 @@
 	margin-top: 8px;
 }
 
+/* Even spacing between stacked controls inside a card (controls use
+   __nextHasNoMarginBottom, so spacing is owned here). */
+.wcq-fields > * {
+	margin-bottom: 16px;
+}
+
+.wcq-fields > *:last-child {
+	margin-bottom: 0;
+}
+
 /* About */
 .wcq-about__heading {
 	margin: 8px 0 12px;

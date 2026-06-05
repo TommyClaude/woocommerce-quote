@@ -9,7 +9,6 @@ import {
 	RadioControl,
 	SelectControl,
 	TextControl,
-	TextareaControl,
 	ToggleControl,
 	FormTokenField,
 	Button,
@@ -24,7 +23,7 @@ const options = data.options || {};
 /**
  * Map helpers between stored IDs and the labels FormTokenField shows.
  *
- * @param {Array}  list    Option list of { id, name | title }.
+ * @param {Array} list Option list of { id, name | title }.
  * @return {Object} { labels, idByLabel, labelById }
  */
 function buildMaps( list = [] ) {
@@ -114,7 +113,7 @@ export default function Settings() {
 			) : null }
 
 			<Card className="wcq-card">
-				<CardBody>
+				<CardBody className="wcq-fields">
 					<RadioControl
 						label={ __( 'Button mode', 'woocommerce-quote' ) }
 						help={ __( 'Show the Add to Quote button alongside Add to Cart, or replace it.', 'woocommerce-quote' ) }
@@ -124,12 +123,22 @@ export default function Settings() {
 							{ label: __( 'Replace Add to Cart', 'woocommerce-quote' ), value: 'replace' },
 						] }
 						onChange={ ( value ) => update( 'button_mode', value ) }
+						__nextHasNoMarginBottom
+					/>
+
+					<TextControl
+						label={ __( 'Button label', 'woocommerce-quote' ) }
+						value={ form.button_label }
+						placeholder={ __( 'Add to Quote', 'woocommerce-quote' ) }
+						onChange={ ( value ) => update( 'button_label', value ) }
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 					/>
 				</CardBody>
 			</Card>
 
 			<Card className="wcq-card">
-				<CardBody>
+				<CardBody className="wcq-fields">
 					<SelectControl
 						label={ __( 'RFQ scope', 'woocommerce-quote' ) }
 						help={ __( 'Which products show the Add to Quote button.', 'woocommerce-quote' ) }
@@ -142,6 +151,8 @@ export default function Settings() {
 							{ label: __( 'Selected user roles', 'woocommerce-quote' ), value: 'roles' },
 						] }
 						onChange={ ( value ) => update( 'rfq_scope', value ) }
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 					/>
 
 					{ form.rfq_scope === 'categories' ? (
@@ -150,6 +161,8 @@ export default function Settings() {
 							value={ idsToTokens( form.scope_categories, catMap ) }
 							suggestions={ catMap.labels }
 							onChange={ ( tokens ) => update( 'scope_categories', tokensToIds( tokens, catMap ) ) }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							__experimentalExpandOnFocus
 						/>
 					) : null }
@@ -160,6 +173,8 @@ export default function Settings() {
 							value={ idsToTokens( form.scope_products, productMap ) }
 							suggestions={ productMap.labels }
 							onChange={ ( tokens ) => update( 'scope_products', tokensToIds( tokens, productMap ) ) }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							__experimentalExpandOnFocus
 						/>
 					) : null }
@@ -170,6 +185,8 @@ export default function Settings() {
 							value={ idsToTokens( form.scope_roles, roleMap ) }
 							suggestions={ roleMap.labels }
 							onChange={ ( tokens ) => update( 'scope_roles', tokensToIds( tokens, roleMap ) ) }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							__experimentalExpandOnFocus
 						/>
 					) : null }
@@ -177,7 +194,7 @@ export default function Settings() {
 			</Card>
 
 			<Card className="wcq-card">
-				<CardBody>
+				<CardBody className="wcq-fields">
 					<RadioControl
 						label={ __( 'Access', 'woocommerce-quote' ) }
 						selected={ form.access }
@@ -186,6 +203,7 @@ export default function Settings() {
 							{ label: __( 'Require login', 'woocommerce-quote' ), value: 'login' },
 						] }
 						onChange={ ( value ) => update( 'access', value ) }
+						__nextHasNoMarginBottom
 					/>
 
 					<ToggleControl
@@ -193,6 +211,7 @@ export default function Settings() {
 						help={ __( 'Show a "Price on request" label and only the quote button for products in the RFQ scope.', 'woocommerce-quote' ) }
 						checked={ !! form.hide_price }
 						onChange={ ( value ) => update( 'hide_price', value ) }
+						__nextHasNoMarginBottom
 					/>
 
 					{ form.hide_price ? (
@@ -201,25 +220,22 @@ export default function Settings() {
 							value={ form.hidden_price_label }
 							placeholder={ __( 'Price on request', 'woocommerce-quote' ) }
 							onChange={ ( value ) => update( 'hidden_price_label', value ) }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					) : null }
 				</CardBody>
 			</Card>
 
 			<Card className="wcq-card">
-				<CardBody>
+				<CardBody className="wcq-fields">
 					<TextControl
-						label={ __( 'Button label', 'woocommerce-quote' ) }
-						value={ form.button_label }
-						placeholder={ __( 'Add to Quote', 'woocommerce-quote' ) }
-						onChange={ ( value ) => update( 'button_label', value ) }
-					/>
-
-					<TextareaControl
 						label={ __( 'Recipient email(s)', 'woocommerce-quote' ) }
 						help={ __( 'Comma-separated. New requests are emailed here.', 'woocommerce-quote' ) }
 						value={ form.recipient_emails }
 						onChange={ ( value ) => update( 'recipient_emails', value ) }
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 					/>
 
 					<SelectControl
@@ -228,12 +244,20 @@ export default function Settings() {
 						value={ String( form.quote_page_id || 0 ) }
 						options={ pageChoices }
 						onChange={ ( value ) => update( 'quote_page_id', parseInt( value, 10 ) ) }
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 					/>
+				</CardBody>
+			</Card>
 
+			<Card className="wcq-card">
+				<CardBody className="wcq-fields">
 					<ToggleControl
 						label={ __( 'Delete all plugin data when uninstalling', 'woocommerce-quote' ) }
+						help={ __( 'When enabled, removing the plugin also deletes its quote requests and settings.', 'woocommerce-quote' ) }
 						checked={ !! form.remove_data_on_uninstall }
 						onChange={ ( value ) => update( 'remove_data_on_uninstall', value ) }
+						__nextHasNoMarginBottom
 					/>
 				</CardBody>
 			</Card>

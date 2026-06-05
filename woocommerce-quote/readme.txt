@@ -4,7 +4,7 @@ Tags: woocommerce, request a quote, rfq, quote, wholesale
 Requires at least: 6.6
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.6.0
+Stable tag: 0.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,12 @@ This is Phase 1 (MVP). See PLAN.md in the source repository for the full roadmap
 4. Configure it under the "WooCommerce Quote" menu.
 
 == Changelog ==
+
+= 0.6.1 =
+* Settings UI: even spacing between controls (toggles no longer crowd the option
+  above them), consistent 40px input sizing via the modern component props, and
+  Recipient email(s) is now a single-line field instead of an oversized textarea.
+  Hide-price and uninstall options moved to their own cards.
 
 = 0.6.0 =
 * Phase 2 — quoting workflow:
