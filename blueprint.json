@@ -24,7 +24,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/TommyClaude/woocommerce-quote/375c938ccc25707f73178d67be1c5b3700930136/woocommerce-quote.zip"
+				"url": "https://raw.githubusercontent.com/TommyClaude/woocommerce-quote/aa68f592a5cd84e9935c7fc48bed57b6f7411c0e/woocommerce-quote.zip"
 			},
 			"options": { "activate": true }
 		},
